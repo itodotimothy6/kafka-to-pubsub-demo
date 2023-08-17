@@ -99,10 +99,23 @@ One consumer simply prints out messages while the other writes the messages into
 ### Phased Migration
 In this demo we'll be using the Google Cloud Pub/Sub Group Kafka Connector to migrate from kafka to Pubsub
 
-- Acquire the jar
-```build
+- Build the kafka-to-pubsub connector jar
+  ```
+    git clone https://github.com/googleapis/java-pubsub-group-kafka-connector
+    mvn clean package -DskipTests=True
+  ```
+- Update your Kafka Connect configurations.
 
-```
+    Open `/config/connect-standalone.properties` in the Kafka download folder. Add the filepath of the downloaded connector jar to plugin.path and uncomment the line if needed. In addition, because the connector is using Kafka Connect in standalone mode, include offset.storage.file.filename with a valid filename to store offset data in.
 
+- Create a `CloudPubSubSinkConnector` config in the kafka download folder.
 
-
+  Open the connector configuration files at `/config` in `java-pubsub-group-kafka-connector`. Update variables labeled TODO (developer) with appropriate input.
+- Start the connector
+  ```
+    bin/connect-standalone.sh \
+    config/connect-standalone.properties \
+    connector/config/cps-sink-connector.properties
+  ```
+- Update consumers to subscribe to Pubsub topic now that messages are streaming from Kafka to Pubsub.
+- Update producer to push to Pubsub topic
