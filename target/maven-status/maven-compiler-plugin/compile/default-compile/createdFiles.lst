@@ -1,0 +1,6 @@
+org/kafka/SimpleKafkaProducer.class
+org/pubsub/SimplePubsubSubscriber1.class
+org/kafka/SimpleKafkaConsumer1.class
+org/kafka/Main.class
+org/pubsub/SimplePubsubSubscriber2.class
+org/kafka/SimpleKafkaConsumer2.class

@@ -39,7 +39,7 @@ public class SimpleKafkaConsumer2 {
         if (response.hasErrors()) {
             System.out.println("Message insert failed");
         } else {
-            System.out.println("Message inserted successfully.");
+            System.out.println("Message inserted to BigQuery successfully.");
         }
     }
 
