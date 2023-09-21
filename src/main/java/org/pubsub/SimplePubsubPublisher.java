@@ -44,7 +44,6 @@ public class SimplePubsubPublisher {
             ByteString data = ByteString.copyFromUtf8(message);
             PubsubMessage pubsubMessage = PubsubMessage.newBuilder().setData(data).build();
 
-            // Once published, returns a server-assigned message id (unique within the topic)
             ApiFuture<String> messageIdFuture = publisher.publish(pubsubMessage);
             String messageId = messageIdFuture.get();
             System.out.println("Published message ID: " + messageId);

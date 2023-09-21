@@ -30,7 +30,6 @@ public class SimpleKafkaProducer {
 
         KafkaProducer<String, String> producer = new KafkaProducer<>(properties);
 
-        // Send random messages and timestamp to the topic
         while (true) {
             String randomString = UUID.randomUUID().toString();
             LocalDateTime currentTime = LocalDateTime.now();
@@ -43,7 +42,7 @@ public class SimpleKafkaProducer {
             String message = jsonObject.toString();
             ProducerRecord<String, String> record = new ProducerRecord<>(topic, message);
             producer.send(record);
-            //TODO: Implement log4j
+    
             System.out.println("Message sent: " + message);
             try {
                 Thread.sleep(5000); // Sleep for 10 seconds
